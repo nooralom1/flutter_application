@@ -15,11 +15,11 @@ class _TicketScreenState extends State<TicketScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: const Text(
-        //   'M360ICT',
-        //   style: TextStyle(color: Colors.black),
-        // ),
-        // centerTitle: true,
+        title: const Text(
+          'M360ICT',
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
         actions: [
@@ -62,7 +62,7 @@ class _TicketScreenState extends State<TicketScreen> {
                   children: [
                     Text(
                       '${tickets.length} Tickets',
-                      style: TextStyle(fontSize: 14.sp),
+                      style: TextStyle(fontSize: 14.sp, color: Colors.grey),
                     ),
                     GestureDetector(
                         onTap: () {

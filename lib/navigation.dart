@@ -5,6 +5,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application/common_widget/custom_button.dart';
+import 'package:flutter_application/screens/contact/view/contact_screen.dart';
 import 'package:flutter_application/screens/tickets/view/ticket_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,7 @@ class _NavigationSCreenState extends State<NavigationSCreen> {
 
   final List _screens = [
     const TicketScreen(),
-    const TicketScreen(),
+    const ContactScreen(),
     const TicketScreen(),
   ];
 

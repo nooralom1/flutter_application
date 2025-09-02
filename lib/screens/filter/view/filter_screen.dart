@@ -9,36 +9,21 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  // Status options
-  final List<String> statusOptions = [
-    'New',
-    'First response overdue',
-    'Customer responded',
-    'Overdue'
-  ];
-  final Map<String, bool> selectedStatus = {
-    'New': false,
-    'First response overdue': false,
-    'Customer responded': false,
-    'Overdue': false,
-  };
-
-  // Priority options
-  final List<String> priorityOptions = [
-    'Select priority',
-    'Low',
-    'Medium',
-    'High',
-    'Urgent'
-  ];
   String selectedPriority = 'Select priority';
-
-  final List<String> selectedTags = [
-    "Open",
-    "Spam",
-    "Close",
-  ];
   int selectedIndex = -1;
+  String tagSearchQuery = '';
+
+  // Filtered tags based on search query
+  List<String> get filteredTags {
+    if (tagSearchQuery.isEmpty) {
+      return selectedTags;
+    }
+    return selectedTags
+        .where(
+            (tag) => tag.toLowerCase().contains(tagSearchQuery.toLowerCase()))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -169,15 +154,19 @@ class _FilterScreenState extends State<FilterScreen> {
                     border: InputBorder.none,
                     filled: true,
                     fillColor: Colors.grey.withOpacity(0.1)),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  setState(() {
+                    tagSearchQuery = value;
+                  });
+                },
               ),
             ),
             SizedBox(height: 12.h),
 
-            // Selected Tags
+            // Selected Tags (now filtered based on search)
             Wrap(
               spacing: 8.w,
-              children: selectedTags.asMap().entries.map((entry) {
+              children: filteredTags.asMap().entries.map((entry) {
                 final index = entry.key;
                 final tag = entry.value;
                 return GestureDetector(
@@ -228,3 +217,32 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 }
+
+// Status options
+final List<String> statusOptions = [
+  'New',
+  'First response overdue',
+  'Customer responded',
+  'Overdue'
+];
+final Map<String, bool> selectedStatus = {
+  'New': false,
+  'First response overdue': false,
+  'Customer responded': false,
+  'Overdue': false,
+};
+
+// Priority options
+final List<String> priorityOptions = [
+  'Select priority',
+  'Low',
+  'Medium',
+  'High',
+  'Urgent'
+];
+
+final List<String> selectedTags = [
+  "Open",
+  "Spam",
+  "Close",
+];
