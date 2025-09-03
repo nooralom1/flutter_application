@@ -15,7 +15,7 @@ class RoleContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280.w,
+      width: 300.w,
       margin: EdgeInsets.only(right: 12.sp),
       padding: EdgeInsets.all(16.sp),
       decoration: BoxDecoration(
