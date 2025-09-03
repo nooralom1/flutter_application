@@ -1,7 +1,7 @@
 // Stateless widget class for role container
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application/screens/profile/view/profile_screen.dart';
+import 'package:flutter_application/screens/profile/ststic_data/static_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoleContainer extends StatelessWidget {

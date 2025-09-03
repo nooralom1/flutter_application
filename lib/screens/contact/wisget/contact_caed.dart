@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application/screens/contact/view/contact_screen.dart';
+import 'package:flutter_application/screens/contact/ststic_data/static_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContactCard extends StatefulWidget {

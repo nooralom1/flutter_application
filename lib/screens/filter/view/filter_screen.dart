@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/provider/all_providers.dart';
+import 'package:flutter_application/screens/filter/static_data/ststic_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -9,23 +12,9 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  String selectedPriority = 'Select priority';
-  int selectedIndex = -1;
-  String tagSearchQuery = '';
-
-  // Filtered tags based on search query
-  List<String> get filteredTags {
-    if (tagSearchQuery.isEmpty) {
-      return selectedTags;
-    }
-    return selectedTags
-        .where(
-            (tag) => tag.toLowerCase().contains(tagSearchQuery.toLowerCase()))
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AllProviders>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -112,7 +101,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   border: Border.all(width: 0.5.w, color: Colors.black),
                   borderRadius: BorderRadius.circular(4.r)),
               child: DropdownButton<String>(
-                value: selectedPriority,
+                value: provider.selectedPriority,
                 isExpanded: true,
                 items: priorityOptions.map((String value) {
                   return DropdownMenuItem<String>(
@@ -126,7 +115,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 }).toList(),
                 onChanged: (newValue) {
                   setState(() {
-                    selectedPriority = newValue!;
+                    provider.selectedPriority = newValue!;
                   });
                 },
               ),
@@ -159,7 +148,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     fillColor: Colors.grey.withOpacity(0.1)),
                 onChanged: (value) {
                   setState(() {
-                    tagSearchQuery = value;
+                    provider.tagSearchQuery = value;
                   });
                 },
               ),
@@ -169,13 +158,13 @@ class _FilterScreenState extends State<FilterScreen> {
             // Selected Tags (now filtered based on search)
             Wrap(
               spacing: 8.w,
-              children: filteredTags.asMap().entries.map((entry) {
+              children: provider.filteredTags.asMap().entries.map((entry) {
                 final index = entry.key;
                 final tag = entry.value;
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedIndex = index;
+                      provider.selectedIndex = index;
                     });
                   },
                   child: Container(
@@ -184,19 +173,19 @@ class _FilterScreenState extends State<FilterScreen> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 0.5,
-                        color: selectedIndex == index
+                        color: provider.selectedIndex == index
                             ? Colors.blue.withOpacity(0.1)
                             : Colors.grey,
                       ),
                       borderRadius: BorderRadius.circular(8.r),
-                      color: selectedIndex == index
+                      color: provider.selectedIndex == index
                           ? Colors.blue.withOpacity(0.1)
                           : Colors.transparent,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (selectedIndex == index)
+                        if (provider.selectedIndex == index)
                           Icon(
                             Icons.check,
                             size: 12.sp,
@@ -220,32 +209,3 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 }
-
-// Status options
-final List<String> statusOptions = [
-  'New',
-  'First response overdue',
-  'Customer responded',
-  'Overdue'
-];
-final Map<String, bool> selectedStatus = {
-  'New': false,
-  'First response overdue': false,
-  'Customer responded': false,
-  'Overdue': false,
-};
-
-// Priority options
-final List<String> priorityOptions = [
-  'Select priority',
-  'Low',
-  'Medium',
-  'High',
-  'Urgent'
-];
-
-final List<String> selectedTags = [
-  "Open",
-  "Spam",
-  "Close",
-];

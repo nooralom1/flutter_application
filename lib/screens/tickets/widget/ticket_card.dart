@@ -1,5 +1,7 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application/screens/tickets/view/ticket_screen.dart';
+import 'package:flutter_application/screens/tickets/ststic_data/static_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TicketCard extends StatelessWidget {
