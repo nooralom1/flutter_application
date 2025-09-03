@@ -15,6 +15,7 @@ class _TicketScreenState extends State<TicketScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           'M360ICT',
           style: TextStyle(color: Colors.black),

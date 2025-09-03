@@ -11,13 +11,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScreenUtilInit(
-      designSize: Size(375, 812),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
+        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         debugShowCheckedModeBanner: false,
-        home: NavigationSCreen(),
+        home: const NavigationSCreen(),
       ),
     );
   }

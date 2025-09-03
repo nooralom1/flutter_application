@@ -15,7 +15,10 @@ class ContactCard extends StatefulWidget {
 class _ContactCardState extends State<ContactCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+          color: const Color.fromRGBO(247, 248, 249, 1),
+          borderRadius: BorderRadius.circular(8.r)),
       child: Padding(
         padding: EdgeInsets.all(16.0.sp),
         child: Column(
