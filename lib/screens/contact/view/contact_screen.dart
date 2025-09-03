@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/provider/all_providers.dart';
 import 'package:flutter_application/screens/contact/wisget/contact_caed.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -10,21 +12,9 @@ class ContactScreen extends StatefulWidget {
 }
 
 class _ContactScreenState extends State<ContactScreen> {
-  final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
-
-  List<Contact> get filteredContacts {
-    if (_searchQuery.isEmpty) {
-      return contacts;
-    }
-    return contacts.where((contact) {
-      return contact.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          contact.email.toLowerCase().contains(_searchQuery.toLowerCase());
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AllProviders>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -70,7 +60,7 @@ class _ContactScreenState extends State<ContactScreen> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(30.r),
                 child: TextFormField(
-                  controller: _searchController,
+                  controller: provider.searchController,
                   decoration: InputDecoration(
                       hintText: 'Search contacts',
                       hintStyle: TextStyle(
@@ -87,7 +77,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       fillColor: Colors.grey.withOpacity(0.15)),
                   onChanged: (value) {
                     setState(() {
-                      _searchQuery = value;
+                      provider.searchQuery = value;
                     });
                   },
                 ),
@@ -96,7 +86,7 @@ class _ContactScreenState extends State<ContactScreen> {
               Row(
                 children: [
                   Text(
-                    '${filteredContacts.length} Contacts',
+                    '${provider.filteredContacts.length} Contacts',
                     style: TextStyle(fontSize: 14.sp, color: Colors.grey),
                   ),
                 ],
@@ -106,9 +96,9 @@ class _ContactScreenState extends State<ContactScreen> {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: filteredContacts.length,
+                itemCount: provider.filteredContacts.length,
                 itemBuilder: (context, index) {
-                  final contact = filteredContacts[index];
+                  final contact = provider.filteredContacts[index];
                   return Padding(
                     padding: EdgeInsets.only(bottom: 12.h),
                     child: ContactCard(contact: contact),
@@ -122,50 +112,3 @@ class _ContactScreenState extends State<ContactScreen> {
     );
   }
 }
-
-class Contact {
-  final String name;
-  final String email;
-  final String phone;
-  final String address;
-  final int ticketCount;
-
-  Contact({
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.address,
-    this.ticketCount = 0,
-  });
-}
-
-final List<Contact> contacts = [
-  Contact(
-    name: 'Michale Kahnwald',
-    email: 'michel@email.com',
-    phone: '+12 34 56 78 90',
-    address: '12A, Lillistrom, Norway',
-    ticketCount: 7,
-  ),
-  Contact(
-    name: 'Noah',
-    email: 'michel@email.com',
-    phone: '+12 34 56 78 90',
-    address: '12A, Lillistrom, Norway',
-    ticketCount: 5,
-  ),
-  Contact(
-    name: 'Jonus Kajhnw',
-    email: 'michel@email.com',
-    phone: '+12 34 56 78 90',
-    address: '12A, Lillistrom, Norway',
-    ticketCount: 3,
-  ),
-  Contact(
-    name: 'Ines',
-    email: 'michel@email.com',
-    phone: '+12 34 56 78 90',
-    address: '',
-    ticketCount: 1,
-  ),
-];

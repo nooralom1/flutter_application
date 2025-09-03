@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/screens/profile/ststic_data/static_data.dart';
 import 'package:flutter_application/screens/profile/widget/info_row.dart';
 import 'package:flutter_application/screens/profile/widget/role_container.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -191,33 +192,3 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-
-class Role {
-  final String title;
-  final String group;
-  final String manager;
-
-  Role({
-    required this.title,
-    required this.group,
-    required this.manager,
-  });
-}
-
-final List<Role> assignedRoles = [
-  Role(
-    title: 'Manager',
-    group: 'Codecayaneon support',
-    manager: 'Jonaus Kahnwald',
-  ),
-  Role(
-    title: 'Developer',
-    group: 'Mobile Team',
-    manager: 'Sarah Johnson',
-  ),
-  Role(
-    title: 'Designer',
-    group: 'UI/UX Team',
-    manager: 'Mike Chen',
-  ),
-];

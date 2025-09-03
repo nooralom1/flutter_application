@@ -106,6 +106,10 @@ meta
 2.12
 file:///Users/softvence/.pub-cache/hosted/pub.dev/meta-1.15.0/
 file:///Users/softvence/.pub-cache/hosted/pub.dev/meta-1.15.0/lib/
+nested
+2.12
+file:///Users/softvence/.pub-cache/hosted/pub.dev/nested-1.0.0/
+file:///Users/softvence/.pub-cache/hosted/pub.dev/nested-1.0.0/lib/
 octo_image
 3.0
 file:///Users/softvence/.pub-cache/hosted/pub.dev/octo_image-2.1.0/
@@ -146,6 +150,10 @@ plugin_platform_interface
 3.0
 file:///Users/softvence/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/
 file:///Users/softvence/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib/
+provider
+2.12
+file:///Users/softvence/.pub-cache/hosted/pub.dev/provider-6.1.5+1/
+file:///Users/softvence/.pub-cache/hosted/pub.dev/provider-6.1.5+1/lib/
 rxdart
 2.12
 file:///Users/softvence/.pub-cache/hosted/pub.dev/rxdart-0.28.0/
