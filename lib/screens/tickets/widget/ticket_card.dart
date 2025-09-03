@@ -9,7 +9,10 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      decoration: BoxDecoration(
+          color: const Color.fromRGBO(247, 248, 249, 1),
+          borderRadius: BorderRadius.circular(8.r)),
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       child: Padding(
         padding: EdgeInsets.all(16.sp),
